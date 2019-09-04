@@ -4,7 +4,7 @@ import { BigInt } from "jsbi";
 const pre = document.getElementById("game-of-life-canvas");
 const host = "https://testnet.perlin.net";
 const contractAddress =
-  "0ae4ddc727646aef27487b442bc57f98272c26bc9cd13898419809f0a781582f";
+			"dd8a3f2704c7a505f15283e22281aed3024267bf99e6c2eedef1cfb582ee76c9";
 
 const wallet = Wavelet.generateNewWallet();
 
@@ -24,7 +24,7 @@ const play = () => {
   playPauseButton.textContent = "⏸";
     // calling the step function will trigger consensus,
     // and therefor start the render loop
-  contract.call(wallet, "step", BigInt(0), BigInt(1), BigInt(0));
+  contract.call(wallet, "step", BigInt(0), BigInt(1e9), BigInt(0));
   running = true;
 };
 
@@ -50,7 +50,7 @@ client.pollConsensus({
 
       if (running) {
           try{
-              contract.call(wallet, "step", BigInt(0), BigInt(1), BigInt(0));
+              contract.call(wallet, "step", BigInt(0), BigInt(1e9), BigInt(0));
           }catch (e){
               console.error(e);
           }
@@ -75,7 +75,7 @@ pre.addEventListener("click", event => {
     wallet,
     "toggle",
     BigInt(0),
-    BigInt(1),
+    BigInt(1e9),
     BigInt(0),
     {
       type: "uint32",

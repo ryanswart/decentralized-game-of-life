@@ -2,9 +2,9 @@ import { Contract, Wavelet } from "wavelet-client";
 import { BigInt } from "jsbi";
 
 const pre = document.getElementById("game-of-life-canvas");
-const host = "https://testnet.perlin.net";
+const host = process.env.WAVELET_API_URL || "https://testnet.perlin.net";
 const contractAddress =
-			"dd8a3f2704c7a505f15283e22281aed3024267bf99e6c2eedef1cfb582ee76c9";
+			process.env.CONTRACT_ID || "dd8a3f2704c7a505f15283e22281aed3024267bf99e6c2eedef1cfb582ee76c9";
 
 const wallet = Wavelet.generateNewWallet();
 
